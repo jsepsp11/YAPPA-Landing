@@ -74,7 +74,7 @@ export default function ForStores() {
                     required
                     value={formData.nombre}
                     onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                    className="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-200 focus:border-[#00D2FF] focus:outline-none transition-colors text-base"
+                    className="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-200 focus:border-[#00D2FF] focus:outline-none transition-colors text-base text-black"
                     placeholder="María García"
                   />
                 </div>
@@ -87,8 +87,8 @@ export default function ForStores() {
                     required
                     value={formData.tienda}
                     onChange={(e) => setFormData({ ...formData, tienda: e.target.value })}
-                    className="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-200 focus:border-[#00D2FF] focus:outline-none transition-colors text-base"
-                    placeholder="Mi Comercio de Barrio"
+                    className="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-200 focus:border-[#00D2FF] focus:outline-none transition-colors text-base text-black"
+                    placeholder="Mi Negocio"
                   />
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default function ForStores() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-200 focus:border-[#00D2FF] focus:outline-none transition-colors text-base"
+                    className="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-200 focus:border-[#00D2FF] focus:outline-none transition-colors text-base text-black"
                     placeholder="maria@email.com"
                   />
                 </div>
@@ -114,7 +114,7 @@ export default function ForStores() {
                     required
                     value={formData.telefono}
                     onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
-                    className="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-200 focus:border-[#00D2FF] focus:outline-none transition-colors text-base"
+                    className="w-full px-4 py-3 sm:py-3.5 rounded-xl border-2 border-gray-200 focus:border-[#00D2FF] focus:outline-none transition-colors text-base text-black"
                     placeholder="+593 99 123 4567"
                   />
                 </div>

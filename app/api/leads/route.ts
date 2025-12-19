@@ -56,7 +56,7 @@ export async function POST(request: Request) {
 
     // Enviar email a ambos correos
     const { data, error } = await resend.emails.send({
-      from: 'YAPPA Leads <onboarding@resend.dev>',
+      from: 'YAPPA Leads <leads@yappaec.com.ec>',
       to: RECIPIENT_EMAILS,
       subject: `🆕 Nuevo Lead: ${tienda} - ${nombre}`,
       html: emailContent,

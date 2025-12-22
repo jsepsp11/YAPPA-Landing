@@ -12,19 +12,19 @@ export default function Contact() {
 
           <div className="grid md:grid-cols-2 gap-8">
             <a
-              href="mailto:correo@yappa.com"
+              href="mailto:jsepsp@gmail.com"
               className="bg-white/80 backdrop-blur-sm p-10 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 border border-gray-100/50"
             >
               <div className="flex justify-center mb-4">
                 <Mail className="w-16 h-16 text-[#00D2FF]" strokeWidth={1.5} />
               </div>
               <h3 className="text-2xl font-bold text-[#082E72] mb-3">Email</h3>
-              <p className="text-gray-600 text-lg">correo@yappa.com</p>
+              <p className="text-gray-600 text-lg">jsepsp@gmail.com</p>
               <p className="text-sm text-gray-500 mt-2">Respuesta en 24 horas</p>
             </a>
 
             <a
-              href="https://wa.me/593999999999"
+              href="https://wa.me/593997992717"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/80 backdrop-blur-sm p-10 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 border border-gray-100/50"
@@ -33,7 +33,7 @@ export default function Contact() {
                 <MessageCircle className="w-16 h-16 text-[#00D2FF]" strokeWidth={1.5} />
               </div>
               <h3 className="text-2xl font-bold text-[#082E72] mb-3">WhatsApp</h3>
-              <p className="text-gray-600 text-lg">+593 XX XXX XXXX</p>
+              <p className="text-gray-600 text-lg">+593 99 799 2717</p>
               <p className="text-sm text-gray-500 mt-2">Lun-Vie 9h00-18h00</p>
             </a>
           </div>

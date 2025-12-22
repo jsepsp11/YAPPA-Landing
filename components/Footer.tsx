@@ -64,14 +64,14 @@ export default function Footer() {
             <ul className="space-y-3 text-blue-200 text-sm">
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <a href="mailto:correo@yappa.com" className="hover:text-[#00D2FF] transition-colors">
-                  correo@yappa.com
+                <a href="mailto:jsepsp@gmail.com" className="hover:text-[#00D2FF] transition-colors">
+                  jsepsp@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <Smartphone className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <a href="https://wa.me/593999999999" className="hover:text-[#00D2FF] transition-colors">
-                  +593 XX XXX XXXX
+                <a href="https://wa.me/593997992717" className="hover:text-[#00D2FF] transition-colors">
+                  +593 99 799 2717
                 </a>
               </li>
             </ul>

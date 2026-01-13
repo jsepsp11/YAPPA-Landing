@@ -38,6 +38,12 @@ export default function Header() {
               Cómo funciona
             </a>
             <a
+              href="#planes"
+              className="text-[#082E72] hover:text-[#00D2FF] font-medium transition-colors text-sm"
+            >
+              Planes
+            </a>
+            <a
               href="#for-stores"
               className="bg-[#00D2FF] text-[#082E72] px-5 py-2.5 rounded-xl font-bold hover:bg-[#00B8E6] transition-all shadow-md text-sm"
             >
@@ -86,6 +92,13 @@ export default function Header() {
                 className="text-[#082E72] hover:text-[#00D2FF] font-medium transition-colors py-2 text-sm"
               >
                 Cómo funciona
+              </a>
+              <a
+                href="#planes"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-[#082E72] hover:text-[#00D2FF] font-medium transition-colors py-2 text-sm"
+              >
+                Planes
               </a>
               <a
                 href="#for-stores"

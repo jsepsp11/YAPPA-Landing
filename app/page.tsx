@@ -5,6 +5,7 @@ import Funcionalidades from '@/components/Funcionalidades';
 import ComoFunciona from '@/components/ComoFunciona';
 import AboutUs from '@/components/AboutUs';
 import Testimonios from '@/components/Testimonios';
+import PricingSection from '@/components/PricingSection';
 import ForStores from '@/components/ForStores';
 import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
@@ -22,6 +23,7 @@ export default function Home() {
         <ComoFunciona />
         <AboutUs />
         <Testimonios />
+        <PricingSection />
         <ForStores />
         <FAQ />
         <Contact />

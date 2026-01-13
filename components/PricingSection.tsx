@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Zap, Building2, Users, Calculator } from 'lucide-react';
+import { Zap, Building2, Users, Calculator, Crown, MessageSquare } from 'lucide-react';
 
 export default function PricingSection() {
   const [merchants, setMerchants] = useState(5);
@@ -26,8 +26,8 @@ export default function PricingSection() {
           </p>
         </div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+        {/* Cards Grid - 3 columnas en desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
           
           {/* Card Growth */}
           <div className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-lg border border-blue-100/50 hover:shadow-xl transition-all flex flex-col">
@@ -85,7 +85,7 @@ export default function PricingSection() {
             </div>
             
             {/* Regla adicional */}
-            <div className="bg-white/10 rounded-xl p-4 mb-4">
+            <div className="bg-white/10 rounded-xl p-3 sm:p-4 mb-4">
               <div className="flex items-center gap-2 text-blue-100 text-sm mb-2">
                 <Users className="w-4 h-4" />
                 <span>+$5 por cada merchant adicional</span>
@@ -96,16 +96,16 @@ export default function PricingSection() {
             </div>
             
             {/* Calculadora de merchants */}
-            <div className="bg-white/10 rounded-xl p-4 mb-6">
+            <div className="bg-white/10 rounded-xl p-3 sm:p-4 mb-6 flex-grow">
               <label htmlFor="merchants-input" className="flex items-center gap-2 text-blue-100 text-sm mb-3">
                 <Calculator className="w-4 h-4" />
                 <span>Calcula tu precio</span>
               </label>
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <button
                   onClick={() => setMerchants(Math.max(1, merchants - 1))}
-                  className="w-10 h-10 rounded-lg bg-white/20 text-white font-bold hover:bg-white/30 transition-colors flex items-center justify-center"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/20 text-white font-bold hover:bg-white/30 transition-colors flex items-center justify-center"
                   aria-label="Reducir merchants"
                 >
                   -
@@ -117,23 +117,23 @@ export default function PricingSection() {
                   max="100"
                   value={merchants}
                   onChange={(e) => setMerchants(Math.max(1, Math.min(100, parseInt(e.target.value) || 1)))}
-                  className="w-16 h-10 rounded-lg bg-white/20 text-white text-center font-bold text-lg border-none focus:outline-none focus:ring-2 focus:ring-[#00D2FF]"
+                  className="w-14 sm:w-16 h-9 sm:h-10 rounded-lg bg-white/20 text-white text-center font-bold text-lg border-none focus:outline-none focus:ring-2 focus:ring-[#00D2FF]"
                   aria-label="Número de merchants"
                 />
                 <button
                   onClick={() => setMerchants(Math.min(100, merchants + 1))}
-                  className="w-10 h-10 rounded-lg bg-white/20 text-white font-bold hover:bg-white/30 transition-colors flex items-center justify-center"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/20 text-white font-bold hover:bg-white/30 transition-colors flex items-center justify-center"
                   aria-label="Aumentar merchants"
                 >
                   +
                 </button>
-                <span className="text-blue-100 text-sm">merchants</span>
+                <span className="text-blue-100 text-xs sm:text-sm">merchants</span>
               </div>
               
               <div className="mt-3 pt-3 border-t border-white/20">
                 <div className="flex justify-between items-center">
                   <span className="text-blue-100 text-sm">Total estimado:</span>
-                  <span className="text-2xl font-bold text-[#00D2FF]">${premiumTotal}</span>
+                  <span className="text-xl sm:text-2xl font-bold text-[#00D2FF]">${premiumTotal}</span>
                 </div>
               </div>
               
@@ -146,8 +146,64 @@ export default function PricingSection() {
               href="#contacto"
               className="w-full bg-[#00D2FF] text-[#082E72] py-3 sm:py-4 rounded-xl font-bold text-base hover:bg-[#00B8E6] transition-all shadow-md text-center flex items-center justify-center gap-2 mt-auto"
             >
-              <Building2 className="w-5 h-5" />
+              <MessageSquare className="w-5 h-5" />
               Hablar con ventas
+            </a>
+          </div>
+
+          {/* Card Enterprise */}
+          <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-700/50 hover:shadow-xl transition-all flex flex-col relative overflow-hidden md:col-span-2 lg:col-span-1">
+            {/* Badge Enterprise */}
+            <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">
+              ENTERPRISE
+            </div>
+            
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-amber-400/20 flex items-center justify-center">
+                <Crown className="w-6 h-6 text-amber-400" strokeWidth={2} />
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white">Enterprise</h3>
+            </div>
+            
+            <p className="text-gray-300 text-sm sm:text-base mb-6">
+              Custom Build
+            </p>
+            
+            <div className="mb-6 flex-grow">
+              <p className="text-gray-400 text-sm mb-4">
+                Solución personalizada para grandes operaciones:
+              </p>
+              <ul className="space-y-2 text-gray-300 text-sm">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
+                  Integraciones a medida
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
+                  Soporte dedicado
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
+                  SLA garantizado
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
+                  Capacitación incluida
+                </li>
+              </ul>
+            </div>
+            
+            <div className="mb-6">
+              <p className="text-2xl sm:text-3xl font-bold text-white">Precio a medida</p>
+              <p className="text-gray-400 text-sm mt-1">Según tus necesidades</p>
+            </div>
+            
+            <a
+              href="#contacto"
+              className="w-full bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 py-3 sm:py-4 rounded-xl font-bold text-base hover:from-amber-500 hover:to-amber-600 transition-all shadow-md text-center flex items-center justify-center gap-2 mt-auto"
+            >
+              <Crown className="w-5 h-5" />
+              Solicitar propuesta
             </a>
           </div>
         </div>

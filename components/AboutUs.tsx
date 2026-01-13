@@ -17,7 +17,7 @@ export default function AboutUs() {
             
             {/* Problema y solución */}
             <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6">
-              Vemos todos los días emprendedores que trabajan duro, pero que no tienen acceso a datos claros sobre su negocio. Por eso creamos <span className="font-bold text-[#082E72]">YAPPA</span>: una solución simple, cercana y poderosa que convierte la información en decisiones y las decisiones en crecimiento real.
+              Vemos todos los días <span className="font-bold text-[#082E72]">negocios</span> que trabajan duro, pero que no tienen datos claros sobre su negocio. Por eso creamos <span className="font-bold text-[#082E72]">YAPPA</span>: una solución simple, cercana y poderosa que convierte la información en decisiones y las decisiones en crecimiento real.
             </p>
             
             {/* Visión */}

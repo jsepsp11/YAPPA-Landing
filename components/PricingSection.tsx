@@ -1,15 +1,38 @@
 'use client';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Zap, Building2, Users, Calculator, Crown, MessageSquare } from 'lucide-react';
 
 export default function PricingSection() {
-  const [merchants, setMerchants] = useState(5);
+  const [merchants, setMerchants] = useState<number>(5);
   
   // Cálculo del precio Premium
-  const calculatePremiumPrice = (numMerchants: number) => {
-    if (numMerchants <= 5) return 25;
-    return 25 + (numMerchants - 5) * 5;
-  };
+  const calculatePremiumPrice = useCallback((numMerchants: number): number => {
+    const validMerchants = Math.max(1, Math.min(100, numMerchants || 1));
+    if (validMerchants <= 5) return 25;
+    return 25 + (validMerchants - 5) * 5;
+  }, []);
+
+  // Handlers para los botones
+  const handleDecrement = useCallback(() => {
+    setMerchants(prev => Math.max(1, prev - 1));
+  }, []);
+
+  const handleIncrement = useCallback(() => {
+    setMerchants(prev => Math.min(100, prev + 1));
+  }, []);
+
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Si está vacío, no hacer nada aún
+    if (value === '') {
+      setMerchants(1);
+      return;
+    }
+    const parsed = parseInt(value, 10);
+    if (!isNaN(parsed)) {
+      setMerchants(Math.max(1, Math.min(100, parsed)));
+    }
+  }, []);
 
   const premiumTotal = calculatePremiumPrice(merchants);
 
@@ -104,11 +127,12 @@ export default function PricingSection() {
               
               <div className="flex items-center gap-2 sm:gap-3">
                 <button
-                  onClick={() => setMerchants(Math.max(1, merchants - 1))}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/20 text-white font-bold hover:bg-white/30 transition-colors flex items-center justify-center"
+                  type="button"
+                  onClick={handleDecrement}
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/20 text-white font-bold hover:bg-white/30 transition-colors flex items-center justify-center select-none"
                   aria-label="Reducir merchants"
                 >
-                  -
+                  −
                 </button>
                 <input
                   id="merchants-input"
@@ -116,13 +140,14 @@ export default function PricingSection() {
                   min="1"
                   max="100"
                   value={merchants}
-                  onChange={(e) => setMerchants(Math.max(1, Math.min(100, parseInt(e.target.value) || 1)))}
-                  className="w-14 sm:w-16 h-9 sm:h-10 rounded-lg bg-white/20 text-white text-center font-bold text-lg border-none focus:outline-none focus:ring-2 focus:ring-[#00D2FF]"
+                  onChange={handleInputChange}
+                  className="w-14 sm:w-16 h-9 sm:h-10 rounded-lg bg-white/20 text-white text-center font-bold text-lg border-none focus:outline-none focus:ring-2 focus:ring-[#00D2FF] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   aria-label="Número de merchants"
                 />
                 <button
-                  onClick={() => setMerchants(Math.min(100, merchants + 1))}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/20 text-white font-bold hover:bg-white/30 transition-colors flex items-center justify-center"
+                  type="button"
+                  onClick={handleIncrement}
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/20 text-white font-bold hover:bg-white/30 transition-colors flex items-center justify-center select-none"
                   aria-label="Aumentar merchants"
                 >
                   +
@@ -176,7 +201,7 @@ export default function PricingSection() {
               <ul className="space-y-2 text-gray-300 text-sm">
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
-                  Integraciones a medida
+                  Integraciones a medida y escalabilidad real
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
@@ -184,11 +209,7 @@ export default function PricingSection() {
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
-                  SLA garantizado
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
-                  Capacitación incluida
+                  Onboarding completo + capacitación continua
                 </li>
               </ul>
             </div>

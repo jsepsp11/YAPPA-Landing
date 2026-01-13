@@ -12,7 +12,7 @@ export default function AboutUs() {
           <div className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl shadow-lg border border-blue-100/50">
             {/* Misión */}
             <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-4 sm:mb-6">
-              <span className="font-bold text-[#082E72]">Nuestra misión es acercar la tecnología</span> a los negocios y comercios pequeños del Ecuador.
+              <span className="font-bold text-[#082E72]">Nuestra misión es acercar la tecnología</span> a los negocios y comercios del Ecuador.
             </p>
             
             {/* Problema y solución */}

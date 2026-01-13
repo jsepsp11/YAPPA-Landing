@@ -143,7 +143,7 @@ export default function PricingSection() {
             </div>
             
             <a
-              href="#contacto"
+              href="#for-stores"
               className="w-full bg-[#00D2FF] text-[#082E72] py-3 sm:py-4 rounded-xl font-bold text-base hover:bg-[#00B8E6] transition-all shadow-md text-center flex items-center justify-center gap-2 mt-auto"
             >
               <MessageSquare className="w-5 h-5" />
@@ -199,7 +199,7 @@ export default function PricingSection() {
             </div>
             
             <a
-              href="#contacto"
+              href="#for-stores"
               className="w-full bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 py-3 sm:py-4 rounded-xl font-bold text-base hover:from-amber-500 hover:to-amber-600 transition-all shadow-md text-center flex items-center justify-center gap-2 mt-auto"
             >
               <Crown className="w-5 h-5" />

@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <a href="#top" className="inline-flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-4 group">
               <Image
-                src="/yappa_logo_icon_only.png"
+                src="/yappa_icon.png"
                 alt="YAPPA"
                 width={32}
                 height={32}

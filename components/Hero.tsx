@@ -98,8 +98,8 @@ export default function Hero() {
               Primer mes gratis. Cancela cuando quieras.
             </p>
 
-            {/* Impacto YAPPA - Métricas */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-0 text-blue-100 px-4 mb-4">
+            {/* Impacto YAPPA - Métricas - SOLO DESKTOP */}
+            <div className="hidden sm:flex flex-row items-center justify-center gap-0 text-blue-100 px-4 mb-4">
               {/* Bloque 1 */}
               <div className="text-center px-4 sm:px-8">
                 <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#00D2FF]">7%</div>
@@ -107,8 +107,7 @@ export default function Hero() {
               </div>
               
               {/* Separador */}
-              <div className="hidden sm:block w-px h-10 sm:h-12 bg-white/20"></div>
-              <div className="sm:hidden w-16 h-px bg-white/20"></div>
+              <div className="w-px h-10 sm:h-12 bg-white/20"></div>
               
               {/* Bloque 2 */}
               <div className="text-center px-4 sm:px-8">
@@ -117,8 +116,7 @@ export default function Hero() {
               </div>
               
               {/* Separador */}
-              <div className="hidden sm:block w-px h-10 sm:h-12 bg-white/20"></div>
-              <div className="sm:hidden w-16 h-px bg-white/20"></div>
+              <div className="w-px h-10 sm:h-12 bg-white/20"></div>
               
               {/* Bloque 3 */}
               <div className="text-center px-4 sm:px-8">
@@ -127,8 +125,8 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Disclaimer */}
-            <p className="text-center text-blue-300/60 text-[10px] sm:text-xs px-4">
+            {/* Disclaimer - SOLO DESKTOP */}
+            <p className="hidden sm:block text-center text-blue-300/60 text-[10px] sm:text-xs px-4">
               *Estimaciones referenciales. Resultados pueden variar según el tipo de negocio y uso de la app.
             </p>
           </div>

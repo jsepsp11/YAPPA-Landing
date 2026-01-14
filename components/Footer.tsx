@@ -1,4 +1,5 @@
 import { Mail, Smartphone, Clock, MapPin } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -6,9 +7,20 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         {/* Mobile: 2 columnas, Desktop: 4 columnas */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 mb-8 sm:mb-12">
-          {/* Branding */}
+          {/* Branding - Brand Lockup */}
           <div className="col-span-2 md:col-span-1">
-            <h3 className="text-2xl sm:text-3xl font-black text-[#00D2FF] mb-2 sm:mb-4">YAPPA</h3>
+            <a href="#top" className="inline-flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-4 group">
+              <Image
+                src="/yappa_logo_icon_only.png"
+                alt="YAPPA"
+                width={32}
+                height={32}
+                className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg"
+              />
+              <span className="text-2xl sm:text-3xl font-black text-[#00D2FF] group-hover:text-white transition-colors">
+                YAPPA
+              </span>
+            </a>
             <p className="text-blue-200 text-xs sm:text-sm leading-relaxed">
               Digitalizando negocios en Ecuador
             </p>

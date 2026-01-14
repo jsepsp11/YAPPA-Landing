@@ -7,7 +7,32 @@ export default function FAQ() {
   const faqs = [
     {
       pregunta: '¿YAPPA tiene algún costo?',
-      respuesta: 'No. YAPPA es 100% gratis para tu negocio. No cobramos suscripción ni activación. Nuestro modelo de negocio está en los servicios y conexiones que generamos alrededor de tu empresa, nunca en cobrarte por usar la app.',
+      respuesta: (
+        <>
+          <p className="mb-3">
+            Sí, YAPPA incluye <strong>1 mes de prueba gratis</strong> para que lo uses en tu negocio sin pagar nada.
+            Cuando termina la prueba, puedes elegir el plan que mejor te quede y el cobro se activa solo si decides continuar.
+          </p>
+          <p className="mb-3 font-semibold text-[#082E72]">Planes disponibles:</p>
+          <ul className="list-none space-y-2 mb-3">
+            <li className="flex items-start gap-2">
+              <span className="text-[#00D2FF] font-bold">•</span>
+              <span><strong>Growth ($9.99/mes):</strong> solo la app.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[#00D2FF] font-bold">•</span>
+              <span><strong>Premium (desde $25/mes):</strong> app + Admin Console (incluye hasta 5 merchants; cada merchant adicional suma $5).</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[#00D2FF] font-bold">•</span>
+              <span><strong>Enterprise:</strong> precio a medida (solución personalizada para operaciones grandes).</span>
+            </li>
+          </ul>
+          <p className="text-gray-600 text-sm italic">
+            Si cancelas antes de que termine el mes de prueba, no se te cobra nada.
+          </p>
+        </>
+      ),
     },
     {
       pregunta: 'No soy bueno con la tecnología, ¿igual puedo usar YAPPA?',
@@ -54,8 +79,8 @@ export default function FAQ() {
                 </span>
               </button>
               {openIndex === index && (
-                <div className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-5 lg:pb-6">
-                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{faq.respuesta}</p>
+                <div className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-5 lg:pb-6 text-sm sm:text-base text-gray-700 leading-relaxed">
+                  {typeof faq.respuesta === 'string' ? <p>{faq.respuesta}</p> : faq.respuesta}
                 </div>
               )}
             </div>

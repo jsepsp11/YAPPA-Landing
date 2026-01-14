@@ -1,6 +1,5 @@
 'use client';
 import { Check, ChevronDown } from 'lucide-react';
-import Image from 'next/image';
 
 export default function Hero() {
   return (
@@ -16,26 +15,11 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
 
         <div className="relative z-10 text-center px-4 sm:px-6">
-          {/* Brand Lockup: Icono + YAPPA */}
-          <div className="mb-6 sm:mb-8 flex flex-col items-center">
-            {/* Icono con animación drop-in */}
-            <div className="animate-drop-in mb-3 sm:mb-4">
-              <Image
-                src="/yappa_icon.png"
-                alt="YAPPA"
-                width={88}
-                height={88}
-                priority
-                className="w-16 h-16 sm:w-[72px] sm:h-[72px] md:w-20 md:h-20 lg:w-[88px] lg:h-[88px] drop-shadow-lg"
-              />
-            </div>
-            
-            {/* Wordmark YAPPA */}
-            <div className="animate-fade-in">
-              <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black text-[#00D2FF] tracking-tight leading-none drop-shadow-2xl">
-                YAPPA
-              </h1>
-            </div>
+          {/* Logo YAPPA */}
+          <div className="mb-6 sm:mb-8 animate-fade-in">
+            <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black text-[#00D2FF] tracking-tight leading-none drop-shadow-2xl">
+              YAPPA
+            </h1>
           </div>
 
           {/* Slogan */}

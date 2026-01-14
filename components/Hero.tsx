@@ -123,7 +123,7 @@ export default function Hero() {
               {/* Bloque 3 */}
               <div className="text-center px-4 sm:px-8">
                 <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#00D2FF]">60 seg</div>
-                <div className="text-xs sm:text-sm mt-1">cierre del día</div>
+                <div className="text-xs sm:text-sm mt-1">tu cierre del día en 60 segundos</div>
               </div>
             </div>
 

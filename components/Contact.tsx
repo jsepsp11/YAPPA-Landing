@@ -41,33 +41,27 @@ export default function Contact() {
               
               {/* Números de WhatsApp */}
               <div className="space-y-3">
-                {/* Número Principal */}
+                {/* Número 1 */}
                 <a
                   href="https://wa.me/593992913093"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between gap-3 p-3 rounded-xl bg-gradient-to-r from-green-50 to-green-100/50 border border-green-200/50 hover:border-green-300 hover:shadow-md transition-all group"
+                  className="flex items-center justify-center gap-3 p-3 rounded-xl bg-gradient-to-r from-green-50 to-green-100/50 border border-green-200/50 hover:border-green-300 hover:shadow-md transition-all group"
                 >
                   <span className="text-gray-800 text-base sm:text-lg font-semibold group-hover:text-green-700 transition-colors">
                     +593 99 291 3093
                   </span>
-                  <span className="bg-green-500 text-white text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap">
-                    Principal
-                  </span>
                 </a>
 
-                {/* Número Alternativo */}
+                {/* Número 2 */}
                 <a
                   href="https://wa.me/593997992717"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between gap-3 p-3 rounded-xl bg-gray-50 border border-gray-200/50 hover:border-gray-300 hover:shadow-md transition-all group"
+                  className="flex items-center justify-center gap-3 p-3 rounded-xl bg-gradient-to-r from-green-50 to-green-100/50 border border-green-200/50 hover:border-green-300 hover:shadow-md transition-all group"
                 >
-                  <span className="text-gray-600 text-sm sm:text-base font-medium group-hover:text-gray-800 transition-colors">
+                  <span className="text-gray-800 text-base sm:text-lg font-semibold group-hover:text-green-700 transition-colors">
                     +593 99 799 2717
-                  </span>
-                  <span className="bg-gray-200 text-gray-600 text-xs font-medium px-2.5 py-1 rounded-full whitespace-nowrap">
-                    Alternativo
                   </span>
                 </a>
               </div>

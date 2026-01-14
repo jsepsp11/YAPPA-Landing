@@ -98,23 +98,39 @@ export default function Hero() {
               Primer mes gratis. Cancela cuando quieras.
             </p>
 
-            {/* Mini-badges - OCULTOS EN MOBILE */}
-            <div className="hidden sm:flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-blue-200 text-xs sm:text-sm px-4">
-              <div className="text-center">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00D2FF]">500+</div>
-                <div>Negocios</div>
+            {/* Impacto YAPPA - Métricas */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-0 text-blue-100 px-4 mb-4">
+              {/* Bloque 1 */}
+              <div className="text-center px-4 sm:px-8">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#00D2FF]">+5–7%</div>
+                <div className="text-xs sm:text-sm mt-1">más ingresos promedio*</div>
               </div>
-              <div className="w-px h-8 sm:h-12 bg-white/20"></div>
-              <div className="text-center">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00D2FF]">Ecuador</div>
-                <div>Hecho aquí</div>
+              
+              {/* Separador */}
+              <div className="hidden sm:block w-px h-10 sm:h-12 bg-white/20"></div>
+              <div className="sm:hidden w-16 h-px bg-white/20"></div>
+              
+              {/* Bloque 2 */}
+              <div className="text-center px-4 sm:px-8">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#00D2FF]">500+</div>
+                <div className="text-xs sm:text-sm mt-1">negocios ya confían en YAPPA</div>
               </div>
-              <div className="w-px h-8 sm:h-12 bg-white/20"></div>
-              <div className="text-center">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00D2FF]">WhatsApp</div>
-                <div>Soporte</div>
+              
+              {/* Separador */}
+              <div className="hidden sm:block w-px h-10 sm:h-12 bg-white/20"></div>
+              <div className="sm:hidden w-16 h-px bg-white/20"></div>
+              
+              {/* Bloque 3 */}
+              <div className="text-center px-4 sm:px-8">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#00D2FF]">60 seg</div>
+                <div className="text-xs sm:text-sm mt-1">cierre del día</div>
               </div>
             </div>
+
+            {/* Disclaimer */}
+            <p className="text-center text-blue-300/60 text-[10px] sm:text-xs px-4">
+              *Estimaciones referenciales. Resultados pueden variar según el tipo de negocio y uso de la app.
+            </p>
           </div>
         </div>
 

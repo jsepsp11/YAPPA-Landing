@@ -102,7 +102,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-0 text-blue-100 px-4 mb-4">
               {/* Bloque 1 */}
               <div className="text-center px-4 sm:px-8">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#00D2FF]">+5–7%</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#00D2FF]">7%</div>
                 <div className="text-xs sm:text-sm mt-1">más ingresos promedio*</div>
               </div>
               

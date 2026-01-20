@@ -64,7 +64,7 @@ export default function PricingSection() {
                   <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#00D2FF]/20 to-[#00D2FF]/10 flex items-center justify-center shadow-sm">
                     <Zap className="w-5 h-5 text-[#00D2FF]" strokeWidth={2.5} />
                   </div>
-                  <h3 className="text-xl font-bold text-[#082E72]">Growth</h3>
+                  <h3 className="text-xl font-bold text-[#082E72]">Crecimiento</h3>
                 </div>
                 <span className="bg-[#00D2FF]/10 text-[#082E72] text-xs font-semibold px-3 py-1 rounded-full border border-[#00D2FF]/20">
                   Ideal para empezar
@@ -136,7 +136,7 @@ export default function PricingSection() {
             </div>
             
             <p className="text-blue-100 text-sm sm:text-base mb-4">
-              App + Admin Console
+              App + Consola Admin
             </p>
             
             <div className="mb-4">
@@ -144,17 +144,17 @@ export default function PricingSection() {
                 <span className="text-4xl sm:text-5xl font-bold text-white">$25</span>
                 <span className="text-blue-200 text-sm">/mes</span>
               </div>
-              <p className="text-blue-200 text-xs sm:text-sm mt-1">hasta 5 merchants</p>
+              <p className="text-blue-200 text-xs sm:text-sm mt-1">hasta 5 comercios</p>
             </div>
             
             {/* Regla adicional */}
             <div className="bg-white/10 rounded-xl p-3 sm:p-4 mb-4">
               <div className="flex items-center gap-2 text-blue-100 text-sm mb-2">
                 <Users className="w-4 h-4" />
-                <span>+$5 por cada merchant adicional</span>
+                <span>+$5 por cada comercio adicional</span>
               </div>
               <p className="text-blue-200 text-xs">
-                Ej. Si tienes 7 merchants = $35
+                Ej. Si tienes 7 comercios = $35
               </p>
             </div>
             
@@ -192,7 +192,7 @@ export default function PricingSection() {
                 >
                   +
                 </button>
-                <span className="text-blue-100 text-xs sm:text-sm">merchants</span>
+                <span className="text-blue-100 text-xs sm:text-sm">comercios</span>
               </div>
               
               <div className="mt-3 pt-3 border-t border-white/20">
@@ -220,18 +220,18 @@ export default function PricingSection() {
           <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 sm:p-7 rounded-2xl shadow-lg border border-gray-700/50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[520px] relative overflow-hidden md:col-span-2 lg:col-span-1">
             {/* Badge Enterprise */}
             <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">
-              ENTERPRISE
+              EMPRESARIAL
             </div>
             
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-xl bg-amber-400/20 flex items-center justify-center">
                 <Crown className="w-6 h-6 text-amber-400" strokeWidth={2} />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white">Enterprise</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-white">Empresarial</h3>
             </div>
             
             <p className="text-gray-300 text-sm sm:text-base mb-6">
-              Custom Build
+              Solución Personalizada
             </p>
             
             <div className="mb-6 flex-grow">
@@ -241,7 +241,7 @@ export default function PricingSection() {
               <ul className="space-y-2 text-gray-300 text-sm">
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
-                  Integraciones a medida y escalabilidad real
+                  Integraciones a medida y escalabilidad
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>

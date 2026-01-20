@@ -14,7 +14,7 @@ export default function Benefits() {
     },
     {
       icon: Bell,
-      titulo: 'Sin quedarte sin stock',
+      titulo: 'No te quedes sin stock',
       descripcion: 'Alertas cuando un producto está por acabarse.',
     },
     {

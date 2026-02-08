@@ -194,8 +194,10 @@ export default function ForStores() {
                 </div>
               </a>
               <a
-                href="#"
-                className="inline-block hover:opacity-80 transition-opacity"
+                href="https://play.google.com/store/apps/details?id=com.yappa.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block hover:opacity-80 hover:scale-105 transition-all duration-200"
                 aria-label="Descargar en Google Play"
               >
                 <div className="bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 min-w-[160px]">

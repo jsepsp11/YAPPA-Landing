@@ -86,7 +86,7 @@ export default function Hero() {
             {/* CTA PRINCIPAL UNIFICADO */}
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6 sm:mb-8 px-4">
               <a
-                href="https://registro.yappaec.com.ec"
+                href="https://gallant-quietude-production-6391.up.railway.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto bg-[#00D4FF] text-[#082E72] px-8 sm:px-12 py-4 sm:py-5 rounded-xl font-bold text-base sm:text-lg hover:bg-[#00B8E6] transform hover:scale-105 transition-all shadow-2xl text-center min-h-[56px] flex items-center justify-center gap-2 border-2 border-white/30"

@@ -50,7 +50,7 @@ export default function Header() {
               Contacto
             </a>
             <a
-              href="https://registro.yappaec.com.ec"
+              href="https://gallant-quietude-production-6391.up.railway.app"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#00D4FF] text-[#082E72] px-6 py-2.5 rounded-xl font-bold hover:bg-[#00B8E6] hover:scale-105 transition-all shadow-lg text-sm border-2 border-[#00D4FF] hover:border-[#00B8E6]"
@@ -116,7 +116,7 @@ export default function Header() {
                 Contacto
               </a>
               <a
-                href="https://registro.yappaec.com.ec"
+                href="https://gallant-quietude-production-6391.up.railway.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}

@@ -1,37 +1,37 @@
 'use client';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-// 5 screenshots de Google Play que representan los 5 pasos
+// 5 screenshots de Google Play en alta resolución
 const SCREENS = [
   {
     id: 1,
     title: 'Cierre del día',
     description: 'Ventas, gastos y ganancia estimada, bien clarito.',
-    image: 'https://play-lh.googleusercontent.com/wqZDpcJ2Li076oy7EeI25hCgDVfRmkMnEAzqnVVNc-S6WVprijZZeWWFeBtFeJ3tE9rwuRG-TjHihkpb2HLUYAQ=w526-h296-rw',
+    image: 'https://play-lh.googleusercontent.com/wqZDpcJ2Li076oy7EeI25hCgDVfRmkMnEAzqnVVNc-S6WVprijZZeWWFeBtFeJ3tE9rwuRG-TjHihkpb2HLUYAQ=w2560-h1440-rw',
   },
   {
     id: 2,
     title: 'Registrar una venta',
     description: 'Anota en segundos, sin complicarte.',
-    image: 'https://play-lh.googleusercontent.com/iOKkn3gCIOxhIOV0RvwnLsJk3pIiNY0NpYVfF-rb4aXiSDtoLbdtHXETc0YAUuW5zD4tJvvFu5O2nhzyrM7u=w526-h296-rw',
+    image: 'https://play-lh.googleusercontent.com/iOKkn3gCIOxhIOV0RvwnLsJk3pIiNY0NpYVfF-rb4aXiSDtoLbdtHXETc0YAUuW5zD4tJvvFu5O2nhzyrM7u=w2560-h1440-rw',
   },
   {
     id: 3,
     title: 'Inventario',
     description: 'Qué entra, qué sale y qué falta.',
-    image: 'https://play-lh.googleusercontent.com/OFg2HBslDvHlBBdCGnaHW16bMr97NwCywc5_CQnzwLH9kyJx-APg4qUoA4xoEi_BWVuSHW3P5dAlXsljlC57YA=w526-h296-rw',
+    image: 'https://play-lh.googleusercontent.com/OFg2HBslDvHlBBdCGnaHW16bMr97NwCywc5_CQnzwLH9kyJx-APg4qUoA4xoEi_BWVuSHW3P5dAlXsljlC57YA=w2560-h1440-rw',
   },
   {
     id: 4,
     title: 'Gastos',
     description: 'Sabe cuánto realmente te queda.',
-    image: 'https://play-lh.googleusercontent.com/7jtBIykF7TUzS_RHNpRCxAwUV_BjMckdyC9UBDAIHWOPHN_JJQQJlkRDY6WIo7ETNr6xmEjuzNVmqrjFMmwpCg=w526-h296-rw',
+    image: 'https://play-lh.googleusercontent.com/7jtBIykF7TUzS_RHNpRCxAwUV_BjMckdyC9UBDAIHWOPHN_JJQQJlkRDY6WIo7ETNr6xmEjuzNVmqrjFMmwpCg=w2560-h1440-rw',
   },
   {
     id: 5,
     title: 'Reportes',
     description: 'Gráficos simples para decidir mejor.',
-    image: 'https://play-lh.googleusercontent.com/-fS5h4X6aPFkGFU3UpNtwD21CjFv9P5VoDNoWK9U3KkI8E4h_WLKR--a43DDaqNEaHVbJTsq4j9jGIn7Bvd5=w526-h296-rw',
+    image: 'https://play-lh.googleusercontent.com/-fS5h4X6aPFkGFU3UpNtwD21CjFv9P5VoDNoWK9U3KkI8E4h_WLKR--a43DDaqNEaHVbJTsq4j9jGIn7Bvd5=w2560-h1440-rw',
   },
 ];
 

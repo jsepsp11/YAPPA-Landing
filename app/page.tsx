@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import ProductoEnAccion from '@/components/ProductoEnAccion';
 import Benefits from '@/components/Benefits';
 import Funcionalidades from '@/components/Funcionalidades';
 import ComoFunciona from '@/components/ComoFunciona';
@@ -18,6 +19,7 @@ export default function Home() {
       <Header />
       <main className="min-h-screen bg-white pb-20 lg:pb-0">
         <Hero />
+        <ProductoEnAccion />
         <Benefits />
         <Funcionalidades />
         <ComoFunciona />

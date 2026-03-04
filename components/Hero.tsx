@@ -84,12 +84,20 @@ export default function Hero() {
             </div>
 
             {/* CTA PRINCIPAL UNIFICADO */}
-            <div className="flex justify-center mb-6 sm:mb-8 px-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6 sm:mb-8 px-4">
+              <a
+                href="https://registro.yappaec.com.ec"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-[#00D4FF] text-[#082E72] px-8 sm:px-12 py-4 sm:py-5 rounded-xl font-bold text-base sm:text-lg hover:bg-[#00B8E6] transform hover:scale-105 transition-all shadow-2xl text-center min-h-[56px] flex items-center justify-center gap-2 border-2 border-white/30"
+              >
+                🚀 Crear cuenta gratis
+              </a>
               <a
                 href="#for-stores"
-                className="w-full sm:w-auto bg-[#00D2FF] text-[#082E72] px-8 sm:px-12 py-4 sm:py-5 rounded-xl font-bold text-base sm:text-lg hover:bg-[#00B8E6] transform hover:scale-105 transition-all shadow-2xl text-center min-h-[56px] flex items-center justify-center"
+                className="w-full sm:w-auto bg-white/10 backdrop-blur-sm text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-bold text-base sm:text-lg hover:bg-white/20 transform hover:scale-105 transition-all text-center min-h-[56px] flex items-center justify-center border-2 border-white/30"
               >
-                Prueba hoy tu negocio en YAPPA
+                Contáctanos
               </a>
             </div>
 

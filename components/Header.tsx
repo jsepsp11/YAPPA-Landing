@@ -45,9 +45,17 @@ export default function Header() {
             </a>
             <a
               href="#for-stores"
-              className="bg-[#00D2FF] text-[#082E72] px-5 py-2.5 rounded-xl font-bold hover:bg-[#00B8E6] transition-all shadow-md text-sm"
+              className="text-[#082E72] hover:text-[#00D2FF] font-medium transition-colors text-sm"
             >
-              Prueba hoy
+              Contacto
+            </a>
+            <a
+              href="https://registro.yappaec.com.ec"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#00D4FF] text-[#082E72] px-6 py-2.5 rounded-xl font-bold hover:bg-[#00B8E6] hover:scale-105 transition-all shadow-lg text-sm border-2 border-[#00D4FF] hover:border-[#00B8E6]"
+            >
+              Crear cuenta gratis
             </a>
           </div>
 
@@ -103,9 +111,18 @@ export default function Header() {
               <a
                 href="#for-stores"
                 onClick={() => setIsMenuOpen(false)}
-                className="bg-[#00D2FF] text-[#082E72] px-5 py-3 rounded-xl font-bold hover:bg-[#00B8E6] transition-all shadow-md text-center mt-2"
+                className="text-[#082E72] hover:text-[#00D2FF] font-medium transition-colors py-2 text-sm"
               >
-                Prueba hoy tu negocio
+                Contacto
+              </a>
+              <a
+                href="https://registro.yappaec.com.ec"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="bg-[#00D4FF] text-[#082E72] px-5 py-3.5 rounded-xl font-bold hover:bg-[#00B8E6] transition-all shadow-lg text-center mt-2 text-base"
+              >
+                🚀 Crear cuenta gratis
               </a>
             </div>
           </div>

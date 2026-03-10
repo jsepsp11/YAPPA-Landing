@@ -179,8 +179,10 @@ export default function ForStores() {
             {/* App Store Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">
               <a
-                href="#"
-                className="inline-block hover:opacity-80 transition-opacity"
+                href="https://apps.apple.com/ec/app/yappa/id6757207017"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block hover:opacity-80 hover:scale-105 transition-all duration-200"
                 aria-label="Descargar en App Store"
               >
                 <div className="bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 min-w-[160px]">

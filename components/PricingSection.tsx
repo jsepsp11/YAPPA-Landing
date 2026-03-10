@@ -1,15 +1,18 @@
 'use client';
 import { useState, useCallback } from 'react';
-import { Zap, Building2, Users, Calculator, Crown, MessageSquare } from 'lucide-react';
+import { Zap, Building2, Users, Calculator, MessageSquare } from 'lucide-react';
 
 export default function PricingSection() {
   const [merchants, setMerchants] = useState<number>(5);
+  const [billingPeriodStandard, setBillingPeriodStandard] = useState<'monthly' | 'annual'>('monthly');
+  const [billingPeriodPremium, setBillingPeriodPremium] = useState<'monthly' | 'annual'>('monthly');
   
   // Cálculo del precio Premium
-  const calculatePremiumPrice = useCallback((numMerchants: number): number => {
+  const calculatePremiumPrice = useCallback((numMerchants: number, isAnnual: boolean): number => {
     const validMerchants = Math.max(1, Math.min(100, numMerchants || 1));
-    if (validMerchants <= 5) return 25;
-    return 25 + (validMerchants - 5) * 5;
+    const basePrice = isAnnual ? 11.99 : 14.99;
+    if (validMerchants <= 5) return basePrice;
+    return basePrice + (validMerchants - 5) * 5;
   }, []);
 
   // Handlers para los botones
@@ -23,7 +26,6 @@ export default function PricingSection() {
 
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    // Si está vacío, no hacer nada aún
     if (value === '') {
       setMerchants(1);
       return;
@@ -34,7 +36,7 @@ export default function PricingSection() {
     }
   }, []);
 
-  const premiumTotal = calculatePremiumPrice(merchants);
+  const premiumTotal = calculatePremiumPrice(merchants, billingPeriodPremium === 'annual');
 
   return (
     <section id="planes" className="relative py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white via-blue-50/30 to-white">
@@ -49,10 +51,10 @@ export default function PricingSection() {
           </p>
         </div>
 
-        {/* Cards Grid - 3 columnas en desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto items-stretch">
+        {/* Cards Grid - 2 columnas centradas */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto items-stretch">
           
-          {/* Card Growth - Rediseñado */}
+          {/* Card Standard */}
           <div className="bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm p-6 sm:p-7 rounded-2xl shadow-lg border border-blue-200/60 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[520px] relative overflow-hidden">
             {/* Decorative element */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#00D2FF]/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
@@ -64,15 +66,41 @@ export default function PricingSection() {
                   <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#00D2FF]/20 to-[#00D2FF]/10 flex items-center justify-center shadow-sm">
                     <Zap className="w-5 h-5 text-[#00D2FF]" strokeWidth={2.5} />
                   </div>
-                  <h3 className="text-xl font-bold text-[#082E72]">Crecimiento</h3>
+                  <h3 className="text-xl font-bold text-[#082E72]">Standard</h3>
                 </div>
                 <span className="bg-[#00D2FF]/10 text-[#082E72] text-xs font-semibold px-3 py-1 rounded-full border border-[#00D2FF]/20">
                   Ideal para empezar
                 </span>
               </div>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Únicamente el App, y nos comienzas a pagar después del primer mes.
+                Solo el App para gestionar tu negocio.
               </p>
+            </div>
+
+            {/* Billing Toggle */}
+            <div className="flex justify-center mb-4">
+              <div className="bg-gray-100 rounded-lg p-1 flex">
+                <button
+                  onClick={() => setBillingPeriodStandard('monthly')}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                    billingPeriodStandard === 'monthly'
+                      ? 'bg-white text-[#082E72] shadow-sm'
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  Mensual
+                </button>
+                <button
+                  onClick={() => setBillingPeriodStandard('annual')}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                    billingPeriodStandard === 'annual'
+                      ? 'bg-white text-[#082E72] shadow-sm'
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  Anual
+                </button>
+              </div>
             </div>
 
             {/* BODY - Benefits */}
@@ -88,7 +116,7 @@ export default function PricingSection() {
                   <div className="w-5 h-5 rounded-full bg-[#00D2FF]/15 flex items-center justify-center flex-shrink-0">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#00D2FF]"></div>
                   </div>
-                  <span>Primer mes gratis</span>
+                  <span className="font-semibold text-[#00D2FF]">🎁 Primer mes gratis</span>
                 </li>
                 <li className="flex items-center gap-3 text-sm text-gray-700">
                   <div className="w-5 h-5 rounded-full bg-[#00D2FF]/15 flex items-center justify-center flex-shrink-0">
@@ -102,13 +130,30 @@ export default function PricingSection() {
             {/* FOOTER - Pricing & CTA */}
             <div className="border-t border-blue-100 pt-5 mt-auto">
               <div className="text-center mb-4">
-                <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-5xl font-bold text-[#082E72]">$9.99</span>
-                  <span className="text-gray-500 text-base font-medium">/mes</span>
-                </div>
-                <p className="text-xs text-gray-500 mt-2">
-                  Empieza gratis, paga desde el mes 2
-                </p>
+                {billingPeriodStandard === 'monthly' ? (
+                  <>
+                    <div className="flex items-baseline justify-center gap-1">
+                      <span className="text-5xl font-bold text-[#082E72]">$9.99</span>
+                      <span className="text-gray-500 text-base font-medium">/mes</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">
+                      Empieza gratis, paga desde el mes 2
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex items-baseline justify-center gap-1">
+                      <span className="text-5xl font-bold text-[#082E72]">$83</span>
+                      <span className="text-gray-500 text-base font-medium">/año</span>
+                    </div>
+                    <p className="text-sm text-green-600 font-semibold mt-1">
+                      Solo $6.99/mes · Ahorras 30%
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      + primer mes gratis
+                    </p>
+                  </>
+                )}
               </div>
               
               <a
@@ -116,7 +161,7 @@ export default function PricingSection() {
                 className="w-full bg-[#00D2FF] text-[#082E72] py-3.5 rounded-xl font-bold text-base hover:bg-[#00B8E6] transition-all shadow-md hover:shadow-lg text-center flex items-center justify-center gap-2 min-h-[48px]"
               >
                 <Zap className="w-5 h-5" />
-                Empezar
+                Empezar gratis
               </a>
             </div>
           </div>
@@ -136,15 +181,56 @@ export default function PricingSection() {
             </div>
             
             <p className="text-blue-100 text-sm sm:text-base mb-4">
-              App + Consola Admin
+              App + App versión web + Admin Console
             </p>
+
+            {/* Billing Toggle */}
+            <div className="flex justify-center mb-4">
+              <div className="bg-white/10 rounded-lg p-1 flex">
+                <button
+                  onClick={() => setBillingPeriodPremium('monthly')}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                    billingPeriodPremium === 'monthly'
+                      ? 'bg-white/20 text-white'
+                      : 'text-blue-200 hover:text-white'
+                  }`}
+                >
+                  Mensual
+                </button>
+                <button
+                  onClick={() => setBillingPeriodPremium('annual')}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                    billingPeriodPremium === 'annual'
+                      ? 'bg-white/20 text-white'
+                      : 'text-blue-200 hover:text-white'
+                  }`}
+                >
+                  Anual
+                </button>
+              </div>
+            </div>
             
             <div className="mb-4">
-              <div className="flex items-baseline gap-1">
-                <span className="text-4xl sm:text-5xl font-bold text-white">$25</span>
-                <span className="text-blue-200 text-sm">/mes</span>
-              </div>
-              <p className="text-blue-200 text-xs sm:text-sm mt-1">hasta 5 comercios</p>
+              {billingPeriodPremium === 'monthly' ? (
+                <>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl sm:text-5xl font-bold text-white">$14.99</span>
+                    <span className="text-blue-200 text-sm">/mes</span>
+                  </div>
+                  <p className="text-blue-200 text-xs sm:text-sm mt-1">hasta 5 comercios</p>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl sm:text-5xl font-bold text-white">$144</span>
+                    <span className="text-blue-200 text-sm">/año</span>
+                  </div>
+                  <p className="text-green-400 text-sm font-semibold mt-1">
+                    Solo $11.99/mes · Ahorras 20%
+                  </p>
+                  <p className="text-blue-200 text-xs mt-1">hasta 5 comercios</p>
+                </>
+              )}
             </div>
             
             {/* Regla adicional */}
@@ -154,7 +240,7 @@ export default function PricingSection() {
                 <span>+$5 por cada comercio adicional</span>
               </div>
               <p className="text-blue-200 text-xs">
-                Ej. Si tienes 7 comercios = $35
+                Ej. Si tienes 7 comercios = ${billingPeriodPremium === 'monthly' ? '24.99' : '21.99'}/mes
               </p>
             </div>
             
@@ -170,7 +256,7 @@ export default function PricingSection() {
                   type="button"
                   onClick={handleDecrement}
                   className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/20 text-white font-bold hover:bg-white/30 transition-colors flex items-center justify-center select-none"
-                  aria-label="Reducir merchants"
+                  aria-label="Reducir comercios"
                 >
                   −
                 </button>
@@ -182,13 +268,13 @@ export default function PricingSection() {
                   value={merchants}
                   onChange={handleInputChange}
                   className="w-14 sm:w-16 h-9 sm:h-10 rounded-lg bg-white/20 text-white text-center font-bold text-lg border-none focus:outline-none focus:ring-2 focus:ring-[#00D2FF] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                  aria-label="Número de merchants"
+                  aria-label="Número de comercios"
                 />
                 <button
                   type="button"
                   onClick={handleIncrement}
                   className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/20 text-white font-bold hover:bg-white/30 transition-colors flex items-center justify-center select-none"
-                  aria-label="Aumentar merchants"
+                  aria-label="Aumentar comercios"
                 >
                   +
                 </button>
@@ -198,13 +284,9 @@ export default function PricingSection() {
               <div className="mt-3 pt-3 border-t border-white/20">
                 <div className="flex justify-between items-center">
                   <span className="text-blue-100 text-sm">Total estimado:</span>
-                  <span className="text-xl sm:text-2xl font-bold text-[#00D2FF]">${premiumTotal}</span>
+                  <span className="text-xl sm:text-2xl font-bold text-[#00D2FF]">${premiumTotal.toFixed(2)}/mes</span>
                 </div>
               </div>
-              
-              <p className="text-blue-300 text-xs mt-2">
-                Estimación referencial. El cobro final se confirma al activar el plan.
-              </p>
             </div>
             
             <a
@@ -213,58 +295,6 @@ export default function PricingSection() {
             >
               <MessageSquare className="w-5 h-5" />
               Hablar con ventas
-            </a>
-          </div>
-
-          {/* Card Enterprise */}
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 sm:p-7 rounded-2xl shadow-lg border border-gray-700/50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[520px] relative overflow-hidden md:col-span-2 lg:col-span-1">
-            {/* Badge Enterprise */}
-            <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">
-              EMPRESARIAL
-            </div>
-            
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-amber-400/20 flex items-center justify-center">
-                <Crown className="w-6 h-6 text-amber-400" strokeWidth={2} />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white">Empresarial</h3>
-            </div>
-            
-            <p className="text-gray-300 text-sm sm:text-base mb-6">
-              Solución Personalizada
-            </p>
-            
-            <div className="mb-6 flex-grow">
-              <p className="text-gray-400 text-sm mb-4">
-                Solución personalizada para grandes operaciones:
-              </p>
-              <ul className="space-y-2 text-gray-300 text-sm">
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
-                  Integraciones a medida y escalabilidad
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
-                  Soporte dedicado
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
-                  Onboarding completo + capacitación continua
-                </li>
-              </ul>
-            </div>
-            
-            <div className="mb-6">
-              <p className="text-2xl sm:text-3xl font-bold text-white">Precio a medida</p>
-              <p className="text-gray-400 text-sm mt-1">Según tus necesidades</p>
-            </div>
-            
-            <a
-              href="#for-stores"
-              className="w-full bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 py-3 sm:py-4 rounded-xl font-bold text-base hover:from-amber-500 hover:to-amber-600 transition-all shadow-md text-center flex items-center justify-center gap-2 mt-auto"
-            >
-              <Crown className="w-5 h-5" />
-              Solicitar propuesta
             </a>
           </div>
         </div>

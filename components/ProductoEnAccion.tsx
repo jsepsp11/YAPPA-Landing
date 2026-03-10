@@ -1,134 +1,41 @@
 'use client';
-import { useState, useEffect, useRef, useCallback } from 'react';
-
-// 5 screenshots de Google Play en alta resolución
-const SCREENS = [
-  {
-    id: 1,
-    title: 'Cierre del día',
-    description: 'Ventas, gastos y ganancia estimada, bien clarito.',
-    image: 'https://play-lh.googleusercontent.com/wqZDpcJ2Li076oy7EeI25hCgDVfRmkMnEAzqnVVNc-S6WVprijZZeWWFeBtFeJ3tE9rwuRG-TjHihkpb2HLUYAQ=w2560-h1440-rw',
-  },
-  {
-    id: 2,
-    title: 'Registrar una venta',
-    description: 'Anota en segundos, sin complicarte.',
-    image: 'https://play-lh.googleusercontent.com/iOKkn3gCIOxhIOV0RvwnLsJk3pIiNY0NpYVfF-rb4aXiSDtoLbdtHXETc0YAUuW5zD4tJvvFu5O2nhzyrM7u=w2560-h1440-rw',
-  },
-  {
-    id: 3,
-    title: 'Inventario',
-    description: 'Qué entra, qué sale y qué falta.',
-    image: 'https://play-lh.googleusercontent.com/OFg2HBslDvHlBBdCGnaHW16bMr97NwCywc5_CQnzwLH9kyJx-APg4qUoA4xoEi_BWVuSHW3P5dAlXsljlC57YA=w2560-h1440-rw',
-  },
-  {
-    id: 4,
-    title: 'Gastos',
-    description: 'Sabe cuánto realmente te queda.',
-    image: 'https://play-lh.googleusercontent.com/7jtBIykF7TUzS_RHNpRCxAwUV_BjMckdyC9UBDAIHWOPHN_JJQQJlkRDY6WIo7ETNr6xmEjuzNVmqrjFMmwpCg=w2560-h1440-rw',
-  },
-  {
-    id: 5,
-    title: 'Reportes',
-    description: 'Gráficos simples para decidir mejor.',
-    image: 'https://play-lh.googleusercontent.com/-fS5h4X6aPFkGFU3UpNtwD21CjFv9P5VoDNoWK9U3KkI8E4h_WLKR--a43DDaqNEaHVbJTsq4j9jGIn7Bvd5=w2560-h1440-rw',
-  },
-];
+import { useState } from 'react';
 
 export default function ProductoEnAccion() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const stepRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [showDemo, setShowDemo] = useState(false);
 
-  // Detectar preferencia de movimiento reducido
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
-    
-    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
-  }, []);
-
-  // IntersectionObserver para desktop - detectar paso activo al hacer scroll
-  useEffect(() => {
-    if (typeof window === 'undefined' || window.innerWidth < 1024) return;
-
-    const observers: IntersectionObserver[] = [];
-    
-    stepRefs.current.forEach((ref, index) => {
-      if (!ref) return;
-      
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-              setActiveIndex(index);
-            }
-          });
-        },
-        { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' }
-      );
-      
-      observer.observe(ref);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach((obs) => obs.disconnect());
-  }, []);
-
-  // Scroll snap para móvil
-  const handleCarouselScroll = useCallback(() => {
-    if (!carouselRef.current) return;
-    const scrollLeft = carouselRef.current.scrollLeft;
-    const itemWidth = carouselRef.current.offsetWidth;
-    const newIndex = Math.round(scrollLeft / itemWidth);
-    if (newIndex !== activeIndex && newIndex >= 0 && newIndex < SCREENS.length) {
-      setActiveIndex(newIndex);
-    }
-  }, [activeIndex]);
-
-  // Click en paso (desktop)
-  const handleStepClick = (index: number) => {
-    setActiveIndex(index);
-  };
-
-  // Click en dot (móvil)
-  const handleDotClick = (index: number) => {
-    setActiveIndex(index);
-    if (carouselRef.current) {
-      const itemWidth = carouselRef.current.offsetWidth;
-      carouselRef.current.scrollTo({
-        left: itemWidth * index,
-        behavior: prefersReducedMotion ? 'auto' : 'smooth',
-      });
-    }
-  };
-
-  // Navegación por teclado
-  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleStepClick(index);
-    } else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-      e.preventDefault();
-      const nextIndex = Math.min(index + 1, SCREENS.length - 1);
-      setActiveIndex(nextIndex);
-      stepRefs.current[nextIndex]?.focus();
-    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-      e.preventDefault();
-      const prevIndex = Math.max(index - 1, 0);
-      setActiveIndex(prevIndex);
-      stepRefs.current[prevIndex]?.focus();
-    }
-  };
+  const features = [
+    {
+      id: 1,
+      title: 'Cierre del día',
+      description: 'Ventas, gastos y ganancia estimada, bien clarito.',
+    },
+    {
+      id: 2,
+      title: 'Registrar una venta',
+      description: 'Anota en segundos, sin complicarte.',
+    },
+    {
+      id: 3,
+      title: 'Inventario',
+      description: 'Qué entra, qué sale y qué falta.',
+    },
+    {
+      id: 4,
+      title: 'Gastos',
+      description: 'Sabe cuánto realmente te queda.',
+    },
+    {
+      id: 5,
+      title: 'Reportes',
+      description: 'Gráficos simples para decidir mejor.',
+    },
+  ];
 
   return (
     <section
       id="producto-en-accion"
-      ref={sectionRef}
       className="yappa-producto-en-accion"
       aria-label="Así se ve YAPPA por dentro"
     >
@@ -201,34 +108,55 @@ export default function ProductoEnAccion() {
           }
         }
 
-        /* Mobile Layout */
-        .yappa-producto-en-accion .mobile-layout {
-          display: block;
+        .yappa-producto-en-accion .demo-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2rem;
         }
 
         @media (min-width: 1024px) {
-          .yappa-producto-en-accion .mobile-layout {
-            display: none;
+          .yappa-producto-en-accion .demo-container {
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 4rem;
           }
         }
 
-        .yappa-producto-en-accion .phone-frame-mobile {
+        .yappa-producto-en-accion .phone-wrapper {
           position: relative;
-          width: 280px;
-          max-width: 90%;
-          margin: 0 auto 1.5rem;
-          aspect-ratio: 9/19;
-          background: #1a1a1a;
-          border-radius: 2.5rem;
-          padding: 0.5rem;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+          width: 100%;
+          max-width: 320px;
         }
 
-        .yappa-producto-en-accion .phone-screen-mobile {
+        @media (min-width: 1024px) {
+          .yappa-producto-en-accion .phone-wrapper {
+            position: sticky;
+            top: 6rem;
+            max-width: 380px;
+          }
+        }
+
+        .yappa-producto-en-accion .phone-frame {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 9/19.5;
+          background: linear-gradient(145deg, #1a1a1a 0%, #000000 100%);
+          border-radius: 3rem;
+          padding: 0.5rem;
+          box-shadow: 
+            0 50px 100px -20px rgba(0, 0, 0, 0.25),
+            0 30px 60px -30px rgba(0, 0, 0, 0.3),
+            inset 0 0 0 2px rgba(255, 255, 255, 0.1),
+            0 0 80px rgba(0, 210, 255, 0.15);
+        }
+
+        .yappa-producto-en-accion .phone-screen {
           width: 100%;
           height: 100%;
           background: #000;
-          border-radius: 2rem;
+          border-radius: 2.5rem;
           overflow: hidden;
           position: relative;
         }
@@ -238,261 +166,205 @@ export default function ProductoEnAccion() {
           top: 0.5rem;
           left: 50%;
           transform: translateX(-50%);
-          width: 5rem;
-          height: 1.5rem;
-          background: #1a1a1a;
+          width: 7rem;
+          height: 1.75rem;
+          background: #000;
           border-radius: 1rem;
+          z-index: 20;
+        }
+
+        .yappa-producto-en-accion .app-iframe {
+          width: 100%;
+          height: 100%;
+          border: none;
+          background: #fff;
+        }
+
+        .yappa-producto-en-accion .loading-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, #082E72 0%, #0A3A8F 100%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          border-radius: 2.5rem;
           z-index: 10;
         }
 
-        .yappa-producto-en-accion .screen-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: opacity 0.3s ease;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .yappa-producto-en-accion .screen-image {
-            transition: none;
-          }
-        }
-
-        .yappa-producto-en-accion .carousel {
-          display: flex;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-          gap: 1rem;
-          padding: 0 1rem;
-        }
-
-        .yappa-producto-en-accion .carousel::-webkit-scrollbar {
+        .yappa-producto-en-accion .loading-overlay.hidden {
           display: none;
         }
 
-        .yappa-producto-en-accion .carousel-item {
-          flex: 0 0 100%;
-          scroll-snap-align: center;
-          background: white;
-          border-radius: 1rem;
-          padding: 1.25rem;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-          border: 1px solid #e2e8f0;
-        }
-
-        .yappa-producto-en-accion .carousel-item-title {
-          font-size: 1.125rem;
-          font-weight: 700;
-          color: #082E72;
-          margin-bottom: 0.5rem;
-        }
-
-        .yappa-producto-en-accion .carousel-item-desc {
-          font-size: 0.875rem;
-          color: #64748b;
-          line-height: 1.5;
-        }
-
-        .yappa-producto-en-accion .dots {
-          display: flex;
-          justify-content: center;
-          gap: 0.5rem;
-          margin-top: 1.5rem;
-        }
-
-        .yappa-producto-en-accion .dot {
-          width: 0.625rem;
-          height: 0.625rem;
+        .yappa-producto-en-accion .loading-spinner {
+          width: 3rem;
+          height: 3rem;
+          border: 3px solid rgba(255, 255, 255, 0.2);
+          border-top-color: #00D2FF;
           border-radius: 50%;
-          background: #cbd5e1;
-          border: none;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+
+        .yappa-producto-en-accion .loading-text {
+          color: #00D2FF;
+          font-size: 0.875rem;
+          font-weight: 600;
+        }
+
+        .yappa-producto-en-accion .start-demo-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, #082E72 0%, #0A3A8F 100%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 1.5rem;
+          border-radius: 2.5rem;
+          z-index: 15;
           cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .yappa-producto-en-accion .start-demo-overlay:hover {
+          background: linear-gradient(135deg, #0A3A8F 0%, #082E72 100%);
+        }
+
+        .yappa-producto-en-accion .start-demo-overlay.hidden {
+          display: none;
+        }
+
+        .yappa-producto-en-accion .demo-logo {
+          font-size: 3rem;
+          font-weight: 900;
+          color: #00D2FF;
+          letter-spacing: -0.02em;
+        }
+
+        .yappa-producto-en-accion .demo-cta {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: #00D2FF;
+          color: #082E72;
+          padding: 0.875rem 1.5rem;
+          border-radius: 0.75rem;
+          font-weight: 700;
+          font-size: 0.9375rem;
           transition: all 0.2s ease;
-          padding: 0;
         }
 
-        .yappa-producto-en-accion .dot.active {
-          background: #00D2FF;
-          transform: scale(1.2);
+        .yappa-producto-en-accion .start-demo-overlay:hover .demo-cta {
+          transform: scale(1.05);
+          box-shadow: 0 10px 30px rgba(0, 210, 255, 0.4);
         }
 
-        .yappa-producto-en-accion .dot:hover {
-          background: #00D2FF;
+        .yappa-producto-en-accion .demo-hint {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.75rem;
+          text-align: center;
+          max-width: 200px;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-          .yappa-producto-en-accion .dot {
-            transition: none;
+        .yappa-producto-en-accion .play-icon {
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+
+        .yappa-producto-en-accion .interactive-badge {
+          position: absolute;
+          top: -0.75rem;
+          right: -0.5rem;
+          background: linear-gradient(135deg, #00D2FF 0%, #00B8E6 100%);
+          color: #082E72;
+          font-size: 0.625rem;
+          font-weight: 700;
+          padding: 0.375rem 0.75rem;
+          border-radius: 1rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          box-shadow: 0 4px 12px rgba(0, 210, 255, 0.4);
+          z-index: 25;
+        }
+
+        .yappa-producto-en-accion .features-list {
+          width: 100%;
+          max-width: 400px;
+        }
+
+        @media (min-width: 1024px) {
+          .yappa-producto-en-accion .features-list {
+            max-width: 450px;
           }
         }
 
-        /* Desktop Layout */
-        .yappa-producto-en-accion .desktop-layout {
+        .yappa-producto-en-accion .features-title {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #082E72;
+          margin-bottom: 1.5rem;
           display: none;
         }
 
         @media (min-width: 1024px) {
-          .yappa-producto-en-accion .desktop-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
+          .yappa-producto-en-accion .features-title {
+            display: block;
           }
         }
 
-        .yappa-producto-en-accion .steps-column {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-
-        .yappa-producto-en-accion .step-button {
+        .yappa-producto-en-accion .feature-item {
           display: flex;
           align-items: flex-start;
           gap: 1rem;
-          padding: 1.25rem 1.5rem;
+          padding: 1rem;
           background: white;
-          border: 2px solid transparent;
           border-radius: 1rem;
-          cursor: pointer;
-          text-align: left;
+          margin-bottom: 0.75rem;
+          border: 1px solid #e2e8f0;
           transition: all 0.2s ease;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        .yappa-producto-en-accion .step-button:hover {
+        .yappa-producto-en-accion .feature-item:hover {
           border-color: #00D2FF;
-          box-shadow: 0 4px 12px rgba(0, 210, 255, 0.15);
+          box-shadow: 0 4px 12px rgba(0, 210, 255, 0.1);
         }
 
-        .yappa-producto-en-accion .step-button.active {
-          border-color: #00D2FF;
-          background: linear-gradient(135deg, #f0fdff 0%, #ffffff 100%);
-          box-shadow: 0 4px 12px rgba(0, 210, 255, 0.2);
-        }
-
-        .yappa-producto-en-accion .step-button:focus {
-          outline: 2px solid #00D2FF;
-          outline-offset: 2px;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .yappa-producto-en-accion .step-button {
-            transition: none;
-          }
-        }
-
-        .yappa-producto-en-accion .step-number {
+        .yappa-producto-en-accion .feature-number {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 2.5rem;
-          height: 2.5rem;
-          background: #f1f5f9;
+          width: 2rem;
+          height: 2rem;
+          background: linear-gradient(135deg, #00D2FF 0%, #00B8E6 100%);
+          color: #082E72;
           border-radius: 50%;
           font-weight: 700;
-          color: #64748b;
+          font-size: 0.875rem;
           flex-shrink: 0;
-          transition: all 0.2s ease;
         }
 
-        .yappa-producto-en-accion .step-button.active .step-number {
-          background: #00D2FF;
-          color: #082E72;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .yappa-producto-en-accion .step-number {
-            transition: none;
-          }
-        }
-
-        .yappa-producto-en-accion .step-content {
+        .yappa-producto-en-accion .feature-content {
           flex: 1;
         }
 
-        .yappa-producto-en-accion .step-title {
-          font-size: 1.125rem;
-          font-weight: 700;
+        .yappa-producto-en-accion .feature-title {
+          font-size: 1rem;
+          font-weight: 600;
           color: #082E72;
           margin-bottom: 0.25rem;
         }
 
-        .yappa-producto-en-accion .step-desc {
-          font-size: 0.9375rem;
-          color: #64748b;
-          line-height: 1.5;
-        }
-
-        .yappa-producto-en-accion .phone-column {
-          position: sticky;
-          top: 6rem;
-        }
-
-        .yappa-producto-en-accion .phone-frame-desktop {
-          position: relative;
-          width: 320px;
-          margin: 0 auto;
-          aspect-ratio: 9/19;
-          background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
-          border-radius: 3rem;
-          padding: 0.625rem;
-          box-shadow: 
-            0 50px 100px -20px rgba(0, 0, 0, 0.3),
-            0 30px 60px -30px rgba(0, 0, 0, 0.3),
-            0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-            0 0 60px rgba(0, 210, 255, 0.1);
-        }
-
-        .yappa-producto-en-accion .phone-screen-desktop {
-          width: 100%;
-          height: 100%;
-          background: #000;
-          border-radius: 2.5rem;
-          overflow: hidden;
-          position: relative;
-        }
-
-        .yappa-producto-en-accion .screen-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-        }
-
-        .yappa-producto-en-accion .screen-slide {
-          position: absolute;
-          inset: 0;
-          opacity: 0;
-          transition: opacity 0.4s ease;
-        }
-
-        .yappa-producto-en-accion .screen-slide.active {
-          opacity: 1;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .yappa-producto-en-accion .screen-slide {
-            transition: none;
-          }
-        }
-
-        .yappa-producto-en-accion .progress-indicator {
-          text-align: center;
-          margin-top: 1.5rem;
+        .yappa-producto-en-accion .feature-desc {
           font-size: 0.875rem;
           color: #64748b;
-          font-weight: 500;
+          line-height: 1.4;
         }
 
-        .yappa-producto-en-accion .progress-indicator span {
-          color: #00D2FF;
-          font-weight: 700;
-        }
-
-        /* CTAs */
         .yappa-producto-en-accion .cta-container {
           display: flex;
           flex-direction: column;
@@ -532,15 +404,6 @@ export default function ProductoEnAccion() {
           box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-          .yappa-producto-en-accion .cta-primary {
-            transition: none;
-          }
-          .yappa-producto-en-accion .cta-primary:hover {
-            transform: none;
-          }
-        }
-
         .yappa-producto-en-accion .cta-secondary {
           display: inline-flex;
           align-items: center;
@@ -569,112 +432,68 @@ export default function ProductoEnAccion() {
           <p className="section-subtitle">Navega la app y entiende tu negocio en minutos.</p>
         </div>
 
-        {/* Mobile Layout */}
-        <div className="mobile-layout">
-          {/* Phone Frame */}
-          <div className="phone-frame-mobile">
-            <div className="phone-screen-mobile">
-              <div className="phone-notch" />
-              <img
-                src={SCREENS[activeIndex].image}
-                alt={`Pantalla de ${SCREENS[activeIndex].title}`}
-                className="screen-image"
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          {/* Carousel */}
-          <div
-            ref={carouselRef}
-            className="carousel"
-            onScroll={handleCarouselScroll}
-            role="tablist"
-            aria-label="Pantallas de la app"
-          >
-            {SCREENS.map((screen, index) => (
-              <div
-                key={screen.id}
-                className="carousel-item"
-                role="tabpanel"
-                aria-labelledby={`dot-${index}`}
-              >
-                <h3 className="carousel-item-title">{screen.title}</h3>
-                <p className="carousel-item-desc">{screen.description}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Dots */}
-          <div className="dots" role="tablist" aria-label="Navegación de pantallas">
-            {SCREENS.map((_, index) => (
-              <button
-                key={index}
-                id={`dot-${index}`}
-                className={`dot ${index === activeIndex ? 'active' : ''}`}
-                onClick={() => handleDotClick(index)}
-                aria-label={`Ir a pantalla ${index + 1}: ${SCREENS[index].title}`}
-                aria-selected={index === activeIndex}
-                role="tab"
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Desktop Layout */}
-        <div className="desktop-layout">
-          {/* Steps Column */}
-          <div className="steps-column" role="tablist" aria-label="Funcionalidades de YAPPA">
-            {SCREENS.map((screen, index) => (
-              <button
-                key={screen.id}
-                ref={(el) => { stepRefs.current[index] = el; }}
-                className={`step-button ${index === activeIndex ? 'active' : ''}`}
-                onClick={() => handleStepClick(index)}
-                onKeyDown={(e) => handleKeyDown(e, index)}
-                role="tab"
-                aria-selected={index === activeIndex}
-                aria-controls={`screen-${index}`}
-                tabIndex={index === activeIndex ? 0 : -1}
-              >
-                <span className="step-number">{index + 1}</span>
-                <div className="step-content">
-                  <h3 className="step-title">{screen.title}</h3>
-                  <p className="step-desc">{screen.description}</p>
-                </div>
-              </button>
-            ))}
-          </div>
-
-          {/* Phone Column */}
-          <div className="phone-column">
-            <div className="phone-frame-desktop">
-              <div className="phone-screen-desktop">
+        {/* Demo Container */}
+        <div className="demo-container">
+          {/* Phone with Interactive App */}
+          <div className="phone-wrapper">
+            <div className="interactive-badge">✨ Interactivo</div>
+            <div className="phone-frame">
+              <div className="phone-screen">
                 <div className="phone-notch" />
-                <div className="screen-container">
-                  {SCREENS.map((screen, index) => (
-                    <div
-                      key={screen.id}
-                      id={`screen-${index}`}
-                      className={`screen-slide ${index === activeIndex ? 'active' : ''}`}
-                      role="tabpanel"
-                      aria-labelledby={`step-${index}`}
-                      hidden={index !== activeIndex}
-                    >
-                      <img
-                        src={screen.image}
-                        alt={`Pantalla de ${screen.title}`}
-                        className="screen-image"
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
+                
+                {/* Start Demo Overlay */}
+                <div 
+                  className={`start-demo-overlay ${showDemo ? 'hidden' : ''}`}
+                  onClick={() => setShowDemo(true)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setShowDemo(true)}
+                  aria-label="Iniciar demo interactivo"
+                >
+                  <div className="demo-logo">YAPPA</div>
+                  <div className="demo-cta">
+                    <svg className="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    Probar la app
+                  </div>
+                  <p className="demo-hint">Haz clic para navegar la app en vivo</p>
                 </div>
+
+                {/* Loading Overlay */}
+                {showDemo && (
+                  <div className={`loading-overlay ${!isLoading ? 'hidden' : ''}`}>
+                    <div className="loading-spinner" />
+                    <span className="loading-text">Cargando YAPPA...</span>
+                  </div>
+                )}
+
+                {/* Interactive App iframe */}
+                {showDemo && (
+                  <iframe
+                    src="https://onboard-web.preview.emergentagent.com/auth"
+                    className="app-iframe"
+                    title="YAPPA App Demo"
+                    onLoad={() => setIsLoading(false)}
+                    allow="clipboard-write"
+                  />
+                )}
               </div>
             </div>
-            <div className="progress-indicator">
-              <span>{activeIndex + 1}</span> / {SCREENS.length}
-            </div>
+          </div>
+
+          {/* Features List */}
+          <div className="features-list">
+            <h3 className="features-title">Lo que puedes hacer:</h3>
+            {features.map((feature, index) => (
+              <div key={feature.id} className="feature-item">
+                <span className="feature-number">{index + 1}</span>
+                <div className="feature-content">
+                  <h4 className="feature-title">{feature.title}</h4>
+                  <p className="feature-desc">{feature.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

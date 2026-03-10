@@ -3,7 +3,6 @@ import Hero from '@/components/Hero';
 import ProductoEnAccion from '@/components/ProductoEnAccion';
 import Benefits from '@/components/Benefits';
 import Funcionalidades from '@/components/Funcionalidades';
-import ComoFunciona from '@/components/ComoFunciona';
 import AboutUs from '@/components/AboutUs';
 import Testimonios from '@/components/Testimonios';
 import PricingSection from '@/components/PricingSection';
@@ -22,7 +21,6 @@ export default function Home() {
         <ProductoEnAccion />
         <Benefits />
         <Funcionalidades />
-        <ComoFunciona />
         <AboutUs />
         <Testimonios />
         <PricingSection />

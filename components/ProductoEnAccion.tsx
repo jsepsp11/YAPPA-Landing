@@ -372,7 +372,7 @@ export default function ProductoEnAccion() {
               {/* Interactive App iframe */}
               {showDemo && (
                 <iframe
-                  src="https://onboard-web.preview.emergentagent.com?autoLogin=true&username=tiendita&password=jsepsp11!"
+                  src="https://onboard-web.preview.emergentagent.com/auth?autoLogin=true&username=tiendita&password=jsepsp11!"
                   className="app-iframe"
                   title="YAPPA App Demo"
                   onLoad={() => setIsLoading(false)}

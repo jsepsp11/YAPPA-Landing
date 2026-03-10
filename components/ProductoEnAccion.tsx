@@ -1,9 +1,44 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+const SCREENS = [
+  {
+    id: 1,
+    title: 'Inicio',
+    image: 'https://play-lh.googleusercontent.com/wqZDpcJ2Li076oy7EeI25hCgDVfRmkMnEAzqnVVNc-S6WVprijZZeWWFeBtFeJ3tE9rwuRG-TjHihkpb2HLUYAQ=w2560-h1440-rw',
+  },
+  {
+    id: 2,
+    title: 'Ventas',
+    image: 'https://play-lh.googleusercontent.com/iOKkn3gCIOxhIOV0RvwnLsJk3pIiNY0NpYVfF-rb4aXiSDtoLbdtHXETc0YAUuW5zD4tJvvFu5O2nhzyrM7u=w2560-h1440-rw',
+  },
+  {
+    id: 3,
+    title: 'Inventario',
+    image: 'https://play-lh.googleusercontent.com/OFg2HBslDvHlBBdCGnaHW16bMr97NwCywc5_CQnzwLH9kyJx-APg4qUoA4xoEi_BWVuSHW3P5dAlXsljlC57YA=w2560-h1440-rw',
+  },
+  {
+    id: 4,
+    title: 'Gastos',
+    image: 'https://play-lh.googleusercontent.com/7jtBIykF7TUzS_RHNpRCxAwUV_BjMckdyC9UBDAIHWOPHN_JJQQJlkRDY6WIo7ETNr6xmEjuzNVmqrjFMmwpCg=w2560-h1440-rw',
+  },
+  {
+    id: 5,
+    title: 'Reportes',
+    image: 'https://play-lh.googleusercontent.com/-fS5h4X6aPFkGFU3UpNtwD21CjFv9P5VoDNoWK9U3KkI8E4h_WLKR--a43DDaqNEaHVbJTsq4j9jGIn7Bvd5=w2560-h1440-rw',
+  },
+];
 
 export default function ProductoEnAccion() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [showDemo, setShowDemo] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Auto-rotate every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % SCREENS.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section
@@ -136,110 +171,31 @@ export default function ProductoEnAccion() {
           z-index: 20;
         }
 
-        .yappa-producto-en-accion .app-iframe {
+        .yappa-producto-en-accion .screen-image {
           width: 100%;
           height: 100%;
-          border: none;
-          background: #fff;
+          object-fit: cover;
+          transition: opacity 0.5s ease;
         }
 
-        .yappa-producto-en-accion .loading-overlay {
+        .yappa-producto-en-accion .screen-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+
+        .yappa-producto-en-accion .screen-slide {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, #082E72 0%, #0A3A8F 100%);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 1rem;
-          border-radius: 2.5rem;
-          z-index: 10;
+          opacity: 0;
+          transition: opacity 0.5s ease;
         }
 
-        .yappa-producto-en-accion .loading-overlay.hidden {
-          display: none;
+        .yappa-producto-en-accion .screen-slide.active {
+          opacity: 1;
         }
 
-        .yappa-producto-en-accion .loading-spinner {
-          width: 3rem;
-          height: 3rem;
-          border: 3px solid rgba(255, 255, 255, 0.2);
-          border-top-color: #00D2FF;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-
-        .yappa-producto-en-accion .loading-text {
-          color: #00D2FF;
-          font-size: 0.875rem;
-          font-weight: 600;
-        }
-
-        .yappa-producto-en-accion .start-demo-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(135deg, #082E72 0%, #0A3A8F 100%);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 1.5rem;
-          border-radius: 2.5rem;
-          z-index: 15;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .yappa-producto-en-accion .start-demo-overlay:hover {
-          background: linear-gradient(135deg, #0A3A8F 0%, #082E72 100%);
-        }
-
-        .yappa-producto-en-accion .start-demo-overlay.hidden {
-          display: none;
-        }
-
-        .yappa-producto-en-accion .demo-logo {
-          font-size: 3rem;
-          font-weight: 900;
-          color: #00D2FF;
-          letter-spacing: -0.02em;
-        }
-
-        .yappa-producto-en-accion .demo-cta {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: #00D2FF;
-          color: #082E72;
-          padding: 0.875rem 1.5rem;
-          border-radius: 0.75rem;
-          font-weight: 700;
-          font-size: 0.9375rem;
-          transition: all 0.2s ease;
-        }
-
-        .yappa-producto-en-accion .start-demo-overlay:hover .demo-cta {
-          transform: scale(1.05);
-          box-shadow: 0 10px 30px rgba(0, 210, 255, 0.4);
-        }
-
-        .yappa-producto-en-accion .demo-hint {
-          color: rgba(255, 255, 255, 0.7);
-          font-size: 0.75rem;
-          text-align: center;
-          max-width: 200px;
-        }
-
-        .yappa-producto-en-accion .play-icon {
-          width: 1.25rem;
-          height: 1.25rem;
-        }
-
-        .yappa-producto-en-accion .interactive-badge {
+        .yappa-producto-en-accion .badge {
           position: absolute;
           top: -0.75rem;
           right: -0.5rem;
@@ -253,6 +209,47 @@ export default function ProductoEnAccion() {
           letter-spacing: 0.05em;
           box-shadow: 0 4px 12px rgba(0, 210, 255, 0.4);
           z-index: 25;
+        }
+
+        .yappa-producto-en-accion .screen-label {
+          position: absolute;
+          bottom: 1rem;
+          left: 50%;
+          transform: translateX(-50%);
+          background: rgba(0, 0, 0, 0.7);
+          color: white;
+          font-size: 0.75rem;
+          font-weight: 600;
+          padding: 0.5rem 1rem;
+          border-radius: 1rem;
+          z-index: 15;
+        }
+
+        .yappa-producto-en-accion .dots {
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-top: 1.5rem;
+        }
+
+        .yappa-producto-en-accion .dot {
+          width: 0.625rem;
+          height: 0.625rem;
+          border-radius: 50%;
+          background: #cbd5e1;
+          border: none;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          padding: 0;
+        }
+
+        .yappa-producto-en-accion .dot.active {
+          background: #00D2FF;
+          transform: scale(1.3);
+        }
+
+        .yappa-producto-en-accion .dot:hover {
+          background: #00D2FF;
         }
 
         .yappa-producto-en-accion .download-section {
@@ -332,54 +329,44 @@ export default function ProductoEnAccion() {
         {/* Header */}
         <div className="section-header">
           <h2 className="section-title">Así se ve YAPPA por dentro</h2>
-          <p className="section-subtitle">Navega la app y entiende tu negocio en minutos.</p>
+          <p className="section-subtitle">Conoce la app que transforma tu negocio.</p>
         </div>
 
-        {/* Phone with Interactive App */}
+        {/* Phone with Screenshots */}
         <div className="phone-wrapper">
-          <div className="interactive-badge">✨ Interactivo</div>
+          <div className="badge">📱 Vista previa</div>
           <div className="phone-frame">
             <div className="phone-screen">
               <div className="phone-notch" />
-              
-              {/* Start Demo Overlay */}
-              <div 
-                className={`start-demo-overlay ${showDemo ? 'hidden' : ''}`}
-                onClick={() => setShowDemo(true)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && setShowDemo(true)}
-                aria-label="Iniciar demo interactivo"
-              >
-                <div className="demo-logo">YAPPA</div>
-                <div className="demo-cta">
-                  <svg className="play-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                  Probar la app
-                </div>
-                <p className="demo-hint">Haz clic para navegar la app en vivo</p>
+              <div className="screen-container">
+                {SCREENS.map((screen, index) => (
+                  <div
+                    key={screen.id}
+                    className={`screen-slide ${index === activeIndex ? 'active' : ''}`}
+                  >
+                    <img
+                      src={screen.image}
+                      alt={`Pantalla ${screen.title}`}
+                      className="screen-image"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
               </div>
-
-              {/* Loading Overlay */}
-              {showDemo && (
-                <div className={`loading-overlay ${!isLoading ? 'hidden' : ''}`}>
-                  <div className="loading-spinner" />
-                  <span className="loading-text">Cargando YAPPA...</span>
-                </div>
-              )}
-
-              {/* Interactive App iframe */}
-              {showDemo && (
-                <iframe
-                  src="https://onboard-web.preview.emergentagent.com/auth?autoLogin=true&username=tiendita&password=jsepsp11!"
-                  className="app-iframe"
-                  title="YAPPA App Demo"
-                  onLoad={() => setIsLoading(false)}
-                  allow="clipboard-write"
-                />
-              )}
+              <div className="screen-label">{SCREENS[activeIndex].title}</div>
             </div>
+          </div>
+          
+          {/* Dots navigation */}
+          <div className="dots">
+            {SCREENS.map((_, index) => (
+              <button
+                key={index}
+                className={`dot ${index === activeIndex ? 'active' : ''}`}
+                onClick={() => setActiveIndex(index)}
+                aria-label={`Ver pantalla ${index + 1}`}
+              />
+            ))}
           </div>
         </div>
 

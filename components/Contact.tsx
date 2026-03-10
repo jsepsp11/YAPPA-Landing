@@ -69,7 +69,7 @@ export default function Contact() {
               {/* Horario */}
               <div className="mt-5">
                 <span className="inline-block bg-blue-50 text-[#082E72] text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
-                  Lun–Vie · 09h00–18h00
+                  Lun–Dom · 24 horas
                 </span>
               </div>
             </div>

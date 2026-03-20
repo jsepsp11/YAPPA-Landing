@@ -372,7 +372,7 @@ export default function ProductoEnAccion() {
               {/* Interactive App iframe */}
               {showDemo && (
                 <iframe
-                  src="https://onboard-web.preview.emergentagent.com"
+                  src="https://gallant-quietude-production-6391.up.railway.app"
                   className="app-iframe"
                   title="YAPPA App Demo"
                   onLoad={() => setIsLoading(false)}

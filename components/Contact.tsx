@@ -13,7 +13,7 @@ export default function Contact() {
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
             {/* Card Email */}
             <a
-              href="mailto:jsepsp@gmail.com"
+              href="mailto:YAPPAec@gmail.com"
               className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 lg:p-10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100/50"
             >
               <div className="flex justify-center mb-4">
@@ -22,7 +22,7 @@ export default function Contact() {
                 </div>
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-[#082E72] mb-3">Email</h3>
-              <p className="text-gray-700 text-base sm:text-lg font-medium">jsepsp@gmail.com</p>
+              <p className="text-gray-700 text-base sm:text-lg font-medium">YAPPAec@gmail.com</p>
               <div className="mt-4">
                 <span className="inline-block bg-blue-50 text-[#082E72] text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
                   Respuesta en 24 horas

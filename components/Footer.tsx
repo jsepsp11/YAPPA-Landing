@@ -76,8 +76,8 @@ export default function Footer() {
             <ul className="space-y-3 text-blue-200 text-sm">
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <a href="mailto:jsepsp@gmail.com" className="hover:text-[#00D2FF] transition-colors">
-                  jsepsp@gmail.com
+                <a href="mailto:YAPPAec@gmail.com" className="hover:text-[#00D2FF] transition-colors">
+                  YAPPAec@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2">

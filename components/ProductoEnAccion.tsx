@@ -372,11 +372,11 @@ export default function ProductoEnAccion() {
               {/* Interactive App iframe */}
               {showDemo && (
                 <iframe
-                  src="https://gallant-quietude-production-6391.up.railway.app"
+                  src="https://victorious-spirit-production-bb2b.up.railway.app/demo"
                   className="app-iframe"
                   title="YAPPA App Demo"
                   onLoad={() => setIsLoading(false)}
-                  allow="clipboard-write"
+                  allow="same-origin; clipboard-write"
                 />
               )}
             </div>

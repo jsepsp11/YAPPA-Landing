@@ -32,7 +32,7 @@ export default function Header() {
               Funcionalidades
             </a>
             <a
-              href="#como-funciona"
+              href="#producto-en-accion"
               className="text-[#082E72] hover:text-[#00D2FF] font-medium transition-colors text-sm"
             >
               Cómo funciona
@@ -95,7 +95,7 @@ export default function Header() {
                 Funcionalidades
               </a>
               <a
-                href="#como-funciona"
+                href="#producto-en-accion"
                 onClick={() => setIsMenuOpen(false)}
                 className="text-[#082E72] hover:text-[#00D2FF] font-medium transition-colors py-2 text-sm"
               >

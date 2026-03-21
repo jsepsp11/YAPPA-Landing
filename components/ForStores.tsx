@@ -148,33 +148,7 @@ export default function ForStores() {
                   Hubo un error. Por favor intenta de nuevo.
                 </p>
               )}
-
-              {/* Mensaje de Pricing Actualizado */}
-              <div className="text-center pt-2">
-                <p className="text-base sm:text-lg font-bold text-[#082E72]">
-                  YAPPA es gratis el primer mes
-                </p>
-                <p className="text-sm text-gray-600 mt-1">
-                  Puedes cancelarlo cuando tú quieras. Ganamos cuando tu negocio crece.
-                </p>
-              </div>
             </form>
-
-            {/* Benefits - Mobile grid 2x2 */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">
-              {beneficios.map((beneficio, index) => {
-                const IconComponent = beneficio.icon;
-                return (
-                  <div key={index} className="text-center">
-                    <div className="flex justify-center mb-1.5">
-                      <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-[#00D2FF]" strokeWidth={1.5} />
-                    </div>
-                    <p className="text-xs sm:text-sm font-bold text-[#082E72]">{beneficio.text}</p>
-                    <p className="text-xs text-gray-500">{beneficio.subtext}</p>
-                  </div>
-                );
-              })}
-            </div>
 
             {/* App Store Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">

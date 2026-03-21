@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Package, DollarSign, BarChart3, TrendingUp, Calendar, MessageCircle, ChevronDown, Sparkles, Brain, Lightbulb, Compass, Rocket, Heart } from 'lucide-react';
+import { Package, DollarSign, BarChart3, TrendingUp, Calendar, MessageCircle, ChevronDown, Sparkles, Brain, Lightbulb, Compass, Rocket, Heart, Users, Truck, CreditCard, Wallet } from 'lucide-react';
 
 export default function Funcionalidades() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -21,6 +21,26 @@ export default function Funcionalidades() {
       icon: BarChart3,
       title: 'Control de gastos',
       description: 'Registra compras a proveedores, gastos del local y otros pagos. Así sabes cuánto realmente te queda.',
+    },
+    {
+      icon: Users,
+      title: 'Gestión de clientes',
+      description: 'Ordena la información de tus clientes y haz seguimiento a sus compras y movimientos de forma más clara.',
+    },
+    {
+      icon: Truck,
+      title: 'Proveedores y compras',
+      description: 'Registra proveedores, compras y abastecimiento para tener más visibilidad sobre cómo se mueve tu negocio.',
+    },
+    {
+      icon: CreditCard,
+      title: 'Cobros pendientes',
+      description: 'Haz seguimiento a lo que te deben y evita perder dinero por falta de control o registro.',
+    },
+    {
+      icon: Wallet,
+      title: 'Pagos del negocio',
+      description: 'Lleva un mejor control de pagos, compromisos y salidas de dinero para operar con más orden.',
     },
     {
       icon: TrendingUp,
@@ -200,23 +220,27 @@ export default function Funcionalidades() {
           </div>
         </div>
 
-        {/* Desktop: Grid View */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-6 lg:gap-8">
-          {funcionalidades.map((func, index) => {
-            const IconComponent = func.icon;
-            return (
-              <div
-                key={index}
-                className="bg-white/80 backdrop-blur-sm p-6 lg:p-8 rounded-2xl hover:shadow-xl transition-all transform hover:-translate-y-1 border border-gray-100/50"
-              >
-                <div className="mb-4">
-                  <IconComponent className="w-10 h-10 lg:w-12 lg:h-12 text-[#00D2FF]" strokeWidth={1.5} />
+        {/* Desktop: Grid View - 5 columns for 10 items */}
+        <div className="hidden lg:block">
+          <div className="grid lg:grid-cols-5 gap-5 lg:gap-6">
+            {funcionalidades.map((func, index) => {
+              const IconComponent = func.icon;
+              return (
+                <div
+                  key={index}
+                  className="bg-white/80 backdrop-blur-sm p-5 lg:p-6 rounded-xl hover:shadow-xl transition-all transform hover:-translate-y-1 border border-gray-100/50 group"
+                >
+                  <div className="mb-3">
+                    <div className="w-11 h-11 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br from-[#00D2FF]/10 to-[#082E72]/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <IconComponent className="w-6 h-6 lg:w-7 lg:h-7 text-[#00D2FF]" strokeWidth={1.5} />
+                    </div>
+                  </div>
+                  <h3 className="text-base lg:text-lg font-bold text-[#082E72] mb-2 leading-tight">{func.title}</h3>
+                  <p className="text-xs lg:text-sm text-gray-600 leading-relaxed">{func.description}</p>
                 </div>
-                <h3 className="text-lg lg:text-xl font-bold text-[#082E72] mb-3">{func.title}</h3>
-                <p className="text-sm lg:text-base text-gray-700 leading-relaxed">{func.description}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
         {/* Mobile/Tablet: Accordion View */}

@@ -108,6 +108,7 @@ export default function IdentitySection() {
           transform: rotateY(180deg);
         }
 
+        /* Desktop hover effect */
         @media (min-width: 1024px) {
           .flip-card:hover .flip-card-inner {
             transform: rotateY(8deg);
@@ -148,25 +149,22 @@ export default function IdentitySection() {
             return (
               <div
                 key={index}
-                className={`flip-card ${isFlipped ? 'flipped' : ''}`}
+                className={`flip-card ${isFlipped ? 'flipped' : ''} h-[280px] sm:h-[320px] lg:h-[380px]`}
                 onClick={() => toggleCard(index)}
                 onKeyDown={(e) => e.key === 'Enter' && toggleCard(index)}
                 tabIndex={0}
                 role="button"
                 aria-label={`${card.front.title}. Toca para ver más información.`}
-                style={{ 
-                  height: 'auto',
-                  minHeight: '280px'
-                }}
               >
-                <div className="flip-card-inner" style={{ minHeight: '280px' }}>
+                {/* Card container - inherits height from parent */}
+                <div className="flip-card-inner">
                   {/* FRONT SIDE */}
-                  <div className="flip-card-front bg-white shadow-lg border border-gray-100/80 flex flex-col" style={{ minHeight: '280px' }}>
-                    {/* Content wrapper with optimal padding */}
+                  <div className="flip-card-front bg-white shadow-lg hover:shadow-2xl transition-shadow border border-gray-100/80 flex flex-col">
+                    {/* Content wrapper */}
                     <div className="p-5 sm:p-6 lg:p-7 flex flex-col h-full">
-                      {/* Icon - compact on mobile */}
-                      <div className={`w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center mb-3 sm:mb-4 shadow-md`}>
-                        <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-white" strokeWidth={1.5} />
+                      {/* Icon with gradient background */}
+                      <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center mb-4 sm:mb-5 shadow-lg`}>
+                        <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" strokeWidth={1.5} />
                       </div>
 
                       {/* Title */}
@@ -179,7 +177,7 @@ export default function IdentitySection() {
                         {card.front.text}
                       </p>
 
-                      {/* Tap hint - integrated, not floating */}
+                      {/* Tap hint */}
                       <div className="flex items-center justify-center gap-1.5 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100">
                         <span className="tap-hint text-xs sm:text-sm text-[#00D2FF] font-medium">
                           Toca para descubrir más
@@ -195,12 +193,12 @@ export default function IdentitySection() {
                   </div>
 
                   {/* BACK SIDE */}
-                  <div className={`flip-card-back bg-gradient-to-br ${card.gradient} flex flex-col text-white`} style={{ minHeight: '280px' }}>
+                  <div className={`flip-card-back bg-gradient-to-br ${card.gradient} flex flex-col text-white`}>
                     {/* Content wrapper */}
                     <div className="p-5 sm:p-6 lg:p-7 flex flex-col h-full">
-                      {/* Back icon - smaller */}
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg sm:rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-3 sm:mb-4">
-                        <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" strokeWidth={2} />
+                      {/* Back icon */}
+                      <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-lg sm:rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-3 sm:mb-4">
+                        <IconComponent className="w-5 h-5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" strokeWidth={2} />
                       </div>
 
                       {/* Back title */}

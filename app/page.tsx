@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import ProductoEnAccion from '@/components/ProductoEnAccion';
+import IdentitySection from '@/components/IdentitySection';
 import Benefits from '@/components/Benefits';
 import Funcionalidades from '@/components/Funcionalidades';
 import AboutUs from '@/components/AboutUs';
@@ -19,6 +20,7 @@ export default function Home() {
       <main className="min-h-screen bg-white pb-20 lg:pb-0">
         <Hero />
         <ProductoEnAccion />
+        <IdentitySection />
         <Benefits />
         <Funcionalidades />
         <AboutUs />
